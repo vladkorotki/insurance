@@ -1,0 +1,501 @@
+@import './variables';
+$maxWidth: 1280;
+
+@mixin adaptive-font($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $addMobSize: $addSize + $addSize * 0.7;
+  @media (max-width: 767px) {
+    font-size: calc(
+      #{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth})
+    );
+  }
+  @media (min-width: 767px) {
+    font-size: calc(#{$mobSize + px} + #{$addSize} * (100vw / #{$maxWidth}));
+  }
+}
+
+@mixin wrapper-mixin {
+  width: 80%;
+  max-width: 1280px;
+  min-width: 275px;
+  min-height: 5rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 767px) {
+    min-height: 4rem;
+    width: 97%;
+  }
+}
+
+@mixin form-wrapper {
+  min-width: 275px;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin headerAndFooterBaseStyles {
+  background-color: $bgcblue;
+  font-family: $fontRoboto;
+  font-size: $fszHeaderText;
+  color: $textColorWhtesmoke;
+  font-weight: bolder;
+  min-width: 275px;
+}
+
+@mixin matIconPasswordStyles {
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  @media screen and (max-width: 480px) {
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
+@mixin baseFormMixin {
+  font-family: $fontRoboto;
+  color: $textColorDarkGray;
+  width: 100%;
+}
+
+@mixin baseFormContainerMixin {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+@mixin formLegendMixin {
+  font-size: $fszFormLegend;
+  margin-bottom: 30px;
+}
+
+@mixin formFiledsetMixin {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  border: none;
+  padding: 0;
+  margin: 0;
+  @media screen and (max-width: 1027px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@mixin btnMixin {
+  display: block;
+  width: 186px;
+  height: 46px;
+  line-height: 46px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: $fszBtn;
+  text-decoration: none;
+  text-align: left;
+  padding-left: 10px;
+  text-transform: uppercase;
+  color: white;
+  vertical-align: middle;
+  background-size: 10%, 100%;
+  background-repeat: no-repeat;
+  background-position: 90% 50%;
+  // &:hover {
+  //   font-size: $fszBtnHover;
+  //   background-size: 11%, 100%;
+  //   background-repeat: no-repeat;
+  //   background-position: 90% 50%;
+  // }
+  @media screen and (max-width: 480px) {
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 93px;
+    height: 38px;
+    font-size: 0.65rem;
+    padding: 0;
+  }
+}
+
+@mixin btnAddMixin {
+  @media screen and (min-width: 481px) {
+    background-image: url('../../assets/images/svg/case.png'),
+      linear-gradient(to right, $bgcblue 127px, $bgcDarkBlue 59px);
+    background-position: 87% 50%;
+
+    &:hover {
+      background-image: url('../../assets/images/svg/case.png'),
+        linear-gradient(to right, $bgcDarkBlue 127px, $bgcDarkBlue 59px);
+      background-position: 87% 50%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    background-color: $bgcblue;
+    &:hover {
+      background-color: $bgcDarkBlue;
+    }
+  }
+}
+
+@mixin btnSearchMixin {
+  @media screen and (min-width: 481px) {
+    background-image: url('../../assets/images/svg/search.png'),
+      linear-gradient(to right, $bgcblue 127px, $bgcDarkBlue 59px);
+    background-size: 14%, 100%;
+
+    &:hover {
+      background-image: url('../../assets/images/svg/search.png'),
+        linear-gradient(to right, $bgcDarkBlue 127px, $bgcDarkBlue 59px);
+      background-size: 15%, 100%;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    background-color: $bgcblue;
+    &:hover {
+      background-color: $bgcDarkBlue;
+    }
+  }
+}
+
+@mixin btnFormAddMixin {
+  @media screen and (min-width: 481px) {
+    background-image: url('../../assets/images/svg/addEmployerForm/add.png'),
+      linear-gradient(to right, $bgcblue 127px, $bgcDarkBlue 59px);
+    background-size: 13%, 100%;
+
+    &:hover {
+      background-image: url('../../assets/images/svg/addEmployerForm/add.png'),
+        linear-gradient(to right, $bgcDarkBlue 127px, $bgcDarkBlue 59px);
+      background-size: 14%, 100%;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    background-color: $bgcblue;
+    &:hover {
+      background-color: $bgcDarkBlue;
+    }
+  }
+}
+
+@mixin btnDialogMixin {
+  background-color: $bgcblue;
+  text-align: center;
+  &:hover {
+    background-color: $bgcDarkBlue;
+  }
+}
+@mixin btnBaseMixin {
+  width: 64px;
+  height: 35px;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  line-height: 35px;
+  background-color: $bgcblue;
+  color: white;
+  text-align: center;
+  font-size: $fszBtn;
+  text-transform: none;
+  &:hover {
+    background-color: $bgcDarkBlue;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 54px;
+    font-size: 11px;
+    height: 30px;
+    line-height: 30px;
+  }
+}
+
+@mixin btnBackMixin {
+  @media screen and (min-width: 481px) {
+    background-image: url('../../assets/images/svg/addEmployerForm/back.png'),
+      linear-gradient(to right, $bgcblue 127px, $bgcDarkBlue 59px);
+    background-size: 15%, 100%;
+
+    &:hover {
+      background-image: url('../../assets/images/svg/addEmployerForm/back.png'),
+        linear-gradient(to right, $bgcDarkBlue 127px, $bgcDarkBlue 59px);
+      background-size: 16%, 100%;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    background-color: $bgcblue;
+    &:hover {
+      background-color: $bgcDarkBlue;
+    }
+  }
+}
+
+@mixin btnCleanMixin {
+  @media screen and (min-width: 481px) {
+    background-image: url('../../assets/images/svg/addEmployerForm/brush.png'),
+      linear-gradient(to right, $bgcblue 127px, $bgcDarkBlue 59px);
+    background-size: 13%, 100%;
+    &:hover {
+      background-image: url('../../assets/images/svg/addEmployerForm/brush.png'),
+        linear-gradient(to right, $bgcDarkBlue 127px, $bgcDarkBlue 59px);
+      background-size: 14%, 100%;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    background-color: $bgcblue;
+    &:hover {
+      background-color: $bgcDarkBlue;
+    }
+  }
+}
+
+@mixin inputMixin {
+  min-width: 150px;
+  flex-grow: 1;
+  display: block;
+  padding: 0 1em 0 2.5em;
+  background-color: #f3fafd;
+  border: solid 2px $bgcDarkBlue;
+  border-radius: 4px;
+  height: 46px;
+  color: #353538;
+  font-weight: 400;
+  font-family: inherit;
+  transition: box-shadow 0.2s linear, border-color 0.25s ease-out;
+  position: relative;
+  box-sizing: border-box;
+  &:focus {
+    outline: none;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border: solid 2px $bgcblue;
+    &::-webkit-input-placeholder {
+      color: transparent;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    height: 38px;
+
+    padding: 0 0.5em 0 0.5em;
+  }
+}
+@mixin inputForLoginForm {
+  display: block;
+  width: 100%;
+  position: relative;
+  padding: 0 1em 0 1em;
+  margin-bottom: 10px;
+}
+
+@mixin searchInputMixin {
+  @media screen and (min-width: 481px) {
+    background-image: url('../../assets/images/svg/search2.png'),
+      linear-gradient(to right, $bgcDarkBlue 100%, $bgcInputs);
+    background-size: 25px, 32px;
+    background-repeat: no-repeat;
+    background-position: 0.58%, 0;
+    &:focus {
+      background-image: url('../../assets/images/svg/search2.png'),
+        linear-gradient(to right, $bgcblue 100%, $bgcInputs);
+      background-size: 25px, 32px;
+      background-repeat: no-repeat;
+      background-position: 0.58%, 0;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 11px;
+    letter-spacing: -0.5px;
+  }
+}
+
+@mixin formInputMixin {
+  @media screen and (min-width: 481px) {
+    background-image: url('../../assets/images/svg/pen.png'),
+      linear-gradient(to right, $bgcDarkBlue 30px, $bgcInputs);
+    background-size: 23px, 32px;
+    background-repeat: no-repeat;
+    background-position: 0.9%, 0;
+    &:focus {
+      background-image: url('../../assets/images/svg/pen.png'),
+        linear-gradient(to right, $bgcblue 30px, $bgcInputs);
+      background-size: 24px, 32px;
+      background-repeat: no-repeat;
+      background-position: 0.9%, 0;
+    }
+  }
+}
+
+@mixin invalidInputMixin {
+  border: solid 2px $colorErrorLight;
+  @media screen and (min-width: 481px) {
+    background-image: url('../../assets/images/svg/pen.png'),
+      linear-gradient(to right, $colorErrorLight 30px, $bgcInputs);
+
+    &:focus {
+      border: solid 2px $colorErrorDeep;
+      background-image: url('../../assets/images/svg/pen.png'),
+        linear-gradient(to right, $colorErrorDeep 30px, $bgcInputs);
+    }
+  }
+}
+
+@mixin tabelBaseMixin {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
+}
+
+@mixin filterTableControl1 {
+  border: 7px solid transparent;
+  border-top-color: whitesmoke;
+  position: absolute;
+  cursor: pointer;
+  top: 8px;
+  right: -20px;
+  &:hover {
+    border-top-color: goldenrod;
+  }
+  @media screen and (max-width: 767px) {
+    top: 6.5px;
+    right: -17px;
+  }
+}
+
+@mixin filterTableControl2 {
+  border: 7px solid transparent;
+  border-bottom-color: whitesmoke;
+  position: absolute;
+  cursor: pointer;
+  top: 1px;
+  right: -20px;
+  &:hover {
+    border-bottom-color: goldenrod;
+  }
+  @media screen and (max-width: 767px) {
+    top: 6.5px;
+    right: -17px;
+  }
+}
+
+@mixin headerTabelRowMixin {
+  height: 40px;
+  background-color: $bgcDarkBlue;
+  align-items: center;
+  color: $bgcWhiteGray;
+  font-weight: bolder;
+  padding: 10px;
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: 767px) {
+    padding: 5px;
+  }
+}
+
+@mixin tabelRowMixin {
+  position: relative;
+  background-color: $bgcInputs;
+  height: 40px;
+  padding: 10px;
+  align-items: center;
+  color: #636367;
+  border-bottom: 2px solid #ececf7;
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: 767px) {
+    padding: 5px;
+  }
+}
+
+@mixin tableLastRowMixin {
+  background-color: $bgcInputs;
+  height: 40px;
+  padding: 10px;
+  align-items: center;
+  color: #636367;
+  border-bottom: 2px solid #ececf7;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  @media screen and (max-width: 767px) {
+    padding: 5px;
+  }
+}
+
+@mixin tabelCellMixin {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  // min-width: 55px;
+}
+@mixin tabelCellControllMixin {
+  @media screen and (max-width: 520px) {
+    display: none;
+  }
+}
+
+@mixin adaptiveCellMixin {
+  display: none;
+  @media screen and (max-width: 520px) {
+    display: flex;
+  }
+}
+
+@mixin selectMixin {
+  display: block;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: #444;
+  line-height: 1.3;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #aaa;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+    linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  &::-ms-expand {
+    display: none;
+  }
+  &:hover {
+    border-color: #888;
+  }
+  &:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 2px $bgcDarkBlue;
+    box-shadow: 0 0 0 2px -moz-mac-focusring;
+    color: #222;
+    outline: none;
+  }
+  & option {
+    font-weight: normal;
+  }
+  *[dir='rtl'] &,
+  :root:lang(ar) &,
+  :root:lang(iw) & {
+    background-position: left 0.7em top 50%, 0 0;
+    padding: 0.6em 0.8em 0.5em 1.4em;
+  }
+}

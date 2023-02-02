@@ -1,0 +1,22 @@
+export enum Message {
+  okResponse = "Everything is Ok",
+  userNotFound = "User not found",
+  wrongPassword = "Password is invalid",
+  existsUser = "User already exists",
+  successUserCreate = "User has been created",
+  successClaimCreate = "Claim has been created",
+  updateData = "User has been updated",
+  errorResponse = "Error!",
+  deleteUser = "All user delete",
+  createdRole = "create new role",
+  existedRole = "such role are already exist",
+  notFoundRole = "such role not found",
+  badRole = "unavailable role",
+  notAddPlan = " only admin can manage plans",
+  okPlan = "new plan is added",
+  updatePlan = "plan has been updated",
+  notFoundPlan ="such plan not found",
+  conpamyNotFound = "Such company not found",
+  consumerNotFound = "Such consumer not found",
+  Unauthorized = 'User is not authorized'
+}
