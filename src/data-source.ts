@@ -28,29 +28,13 @@ dotenv.config();
 //   //   rejectUnauthorized: false,
 //   // },
 // });
-// export const AppDataSource = new DataSource({
-//   type: "postgres",
-//   host: process.env.DB_G_HOST,
-//   port: 10269,
-//   username: process.env.DB_G_USER_NAME,
-//   password: process.env.DB_G_PASSWORD,
-//   database: process.env.DB_G_NAME,
-//   synchronize: true,
-//   logging: false,
-//   entities: [User, Admin, Employee, Consumer, Role, Plans, Claims],
-//   migrations: [],
-//   subscribers: [],
-//   ssl: {
-//     rejectUnauthorized: false,
-//   },
-// });
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "postgresql-108911-0.cloudclusters.net",
+  host: process.env.DB_G_HOST,
   port: 10269,
-  username: "admin",
-  password: "rdvuiewPRO92",
-  database: "insurance_db",
+  username: process.env.DB_G_USER_NAME,
+  password: process.env.DB_G_PASSWORD,
+  database: process.env.DB_G_NAME,
   synchronize: true,
   logging: false,
   entities: [User, Admin, Employee, Consumer, Role, Plans, Claims],
@@ -60,4 +44,20 @@ export const AppDataSource = new DataSource({
     rejectUnauthorized: false,
   },
 });
+// export const AppDataSource = new DataSource({
+//   type: "postgres",
+//   host: "postgresql-108911-0.cloudclusters.net",
+//   port: 10269,
+//   username: "admin",
+//   password: "rdvuiewPRO92",
+//   database: "insurance_db",
+//   synchronize: true,
+//   logging: false,
+//   entities: [User, Admin, Employee, Consumer, Role, Plans, Claims],
+//   migrations: [],
+//   subscribers: [],
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
 
