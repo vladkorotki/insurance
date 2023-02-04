@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import {
   claimsRepository,
   consumerRepository,
+  plansRepository,
+  userRepository,
 } from "../repositiries/repositories";
 import { HttpStatusCode } from "../shared/enums/enum-httpStatusCode";
 import { Message } from "../shared/enums/enums-message";
@@ -21,11 +23,32 @@ class ClaimsController {
         relations: ["employee", "claims"],
       });
 
+      const foundPlan = await userRepository.findOne({
+        where: {
+          employee: {
+            consumer: {
+              id: data.consumerId,
+            },
+          },
+          plans: {
+            name: data.plan,
+          },
+        },
+      });
+
       if (!foundConsumer) {
         return res
           .status(HttpStatusCode.InternalServerError)
           .json(Message.consumerNotFound);
       }
+
+      if (!foundPlan) {
+        return res
+          .status(HttpStatusCode.InternalServerError)
+          .json(Message.notFoundPlan);
+      }
+
+    
       const claim = new Claims(data);
       claim.employer = foundConsumer.employee.name;
       await claimsRepository.save(claim);
@@ -55,8 +78,8 @@ class ClaimsController {
       } = req.query;
 
       claimNumber = claimNumber.toString();
-      let number:number = Number(claimNumber);
-    
+      let number: number = Number(claimNumber);
+
       const byEmployerName = function (): any {
         if (sortByEmployer === "true") return "ASC";
       };
@@ -67,10 +90,10 @@ class ClaimsController {
 
       const data = await claimsRepository.find({
         relations: ["consumer"],
-        where:{
+        where: {
           employer: Like(`%${employerName}%`),
           claimNumber: number || null,
-          status: Like(`%${claimStatus.toString().toLocaleLowerCase()}%`)
+          status: Like(`%${claimStatus.toString().toLocaleLowerCase()}%`),
         },
         skip: (+skip - 1) * 10,
         take: 10,
@@ -79,10 +102,9 @@ class ClaimsController {
           date: byDate(),
         },
       });
-      
+
       res.status(HttpStatusCode.Ok).json(data);
     } catch (error) {
-      
       logger.error(error.detail);
 
       res
@@ -90,7 +112,7 @@ class ClaimsController {
         .json(Message.errorResponse);
     }
   }
-  
+
   async getClaimsAmount(req: Request, res: Response) {
     try {
       const data = await claimsRepository.find({});
