@@ -16,14 +16,15 @@ class ClaimsController {
   async createClaim(req: Request, res: Response) {
     try {
       const { data } = req.body;
+
       const foundConsumer = await consumerRepository.findOne({
         where: {
           id: data.consumerId,
         },
         relations: ["employee", "claims"],
       });
-
-      const foundPlan = await userRepository.findOne({
+      
+     const foundPlan = await userRepository.findOne({
         where: {
           employee: {
             consumer: {
@@ -35,7 +36,7 @@ class ClaimsController {
           },
         },
       });
-
+      
       if (!foundConsumer) {
         return res
           .status(HttpStatusCode.InternalServerError)
@@ -48,7 +49,7 @@ class ClaimsController {
           .json(Message.notFoundPlan);
       }
 
-    
+      
       const claim = new Claims(data);
       claim.employer = foundConsumer.employee.name;
       await claimsRepository.save(claim);
